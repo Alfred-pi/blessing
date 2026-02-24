@@ -28,7 +28,7 @@ const t = translations[lang];
           <div class="trust-colors">
             <span class="tc tc-r"></span><span class="tc tc-y"></span><span class="tc tc-g"></span><span class="tc tc-b"></span>
           </div>
-          <span class="trust-text">500+ empresas confiam em nós</span>
+          <span class="trust-text">{t.trust}</span>
         </div>
       </div>
       <div class="hero-visual animate-fade-up delay-2">
@@ -48,13 +48,13 @@ const t = translations[lang];
   <section class="marquee-section">
     <div class="marquee-track">
       <div class="marquee-content">
-        {['Uniformes Corporativos', 'Fardas', 'EPI', 'Design Têxtil', 'Bordados', 'Estampas', 'Polos', 'Camisas', 'Coletes', 'Batas'].map(item => (
+        {t.marquee.map((item: string) => (
           <span class="marquee-item">
             <span class="marquee-dot"></span>
             {item}
           </span>
         ))}
-        {['Uniformes Corporativos', 'Fardas', 'EPI', 'Design Têxtil', 'Bordados', 'Estampas', 'Polos', 'Camisas', 'Coletes', 'Batas'].map(item => (
+        {t.marquee.map((item: string) => (
           <span class="marquee-item">
             <span class="marquee-dot"></span>
             {item}
@@ -94,16 +94,16 @@ const t = translations[lang];
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <div class="tag">Processo</div>
-        <h2>Como Trabalhamos</h2>
-        <p>Do primeiro contacto à entrega, um processo simples e transparente</p>
+        <div class="tag">{t.process.tag}</div>
+        <h2>{t.process.title}</h2>
+        <p>{t.process.subtitle}</p>
       </div>
       <div class="process-grid">
         {[
-          { num: '01', title: 'Consulta', desc: 'Entendemos as necessidades da sua empresa e definimos o projeto juntos.', iconId: 'chat', color: 'var(--red)', bg: 'rgba(212,43,43,0.06)' },
-          { num: '02', title: 'Design', desc: 'Criamos designs personalizados com a identidade visual da sua marca.', iconId: 'pen', color: 'var(--yellow)', bg: 'rgba(240,180,41,0.06)' },
-          { num: '03', title: 'Produção', desc: 'Confeccionamos com materiais de qualidade e atenção a cada detalhe.', iconId: 'scissors', color: 'var(--green)', bg: 'rgba(46,173,74,0.06)' },
-          { num: '04', title: 'Entrega', desc: 'Entregamos no prazo, com garantia de qualidade em cada peça.', iconId: 'truck', color: 'var(--blue)', bg: 'rgba(43,124,212,0.06)' },
+          { num: '01', title: t.process.steps[0].title, desc: t.process.steps[0].desc, iconId: 'chat', color: 'var(--red)', bg: 'rgba(212,43,43,0.06)' },
+          { num: '02', title: t.process.steps[1].title, desc: t.process.steps[1].desc, iconId: 'pen', color: 'var(--yellow)', bg: 'rgba(240,180,41,0.06)' },
+          { num: '03', title: t.process.steps[2].title, desc: t.process.steps[2].desc, iconId: 'scissors', color: 'var(--green)', bg: 'rgba(46,173,74,0.06)' },
+          { num: '04', title: t.process.steps[3].title, desc: t.process.steps[3].desc, iconId: 'truck', color: 'var(--blue)', bg: 'rgba(43,124,212,0.06)' },
         ].map((step, i) => (
           <div class="process-card reveal-scale" style={`transition-delay: ${i * 0.12}s`}>
             <div class="pc-top">
@@ -158,18 +158,18 @@ const t = translations[lang];
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <div class="tag">Vantagens</div>
-        <h2>Porquê a Blessing?</h2>
-        <p>O que nos diferencia no mercado angolano</p>
+        <div class="tag">{t.whyUs.tag}</div>
+        <h2>{t.whyUs.title}</h2>
+        <p>{t.whyUs.subtitle}</p>
       </div>
       <div class="features-grid">
         {[
-          { iconId: 'zap', title: 'Rapidez', desc: 'Prazos de entrega competitivos para não parar a sua operação', bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
-          { iconId: 'target', title: 'Personalização', desc: 'Cada uniforme é pensado para a identidade da sua empresa', bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
-          { iconId: 'shield', title: 'Qualidade', desc: 'Materiais resistentes e acabamentos de excelência duradouros', bg: 'rgba(46,173,74,0.06)', color: 'var(--green)' },
-          { iconId: 'tag', title: 'Preço Justo', desc: 'Melhor relação qualidade-preço do mercado em Luanda', bg: 'rgba(240,180,41,0.06)', color: 'var(--yellow)' },
-          { iconId: 'users', title: 'Acompanhamento', desc: 'Suporte dedicado do início ao fim do seu projeto', bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
-          { iconId: 'award', title: 'Experiência', desc: 'Anos de know-how no mercado angolano de uniformes', bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
+          { iconId: 'zap', title: t.whyUs.items[0].title, desc: t.whyUs.items[0].desc, bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
+          { iconId: 'target', title: t.whyUs.items[1].title, desc: t.whyUs.items[1].desc, bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
+          { iconId: 'shield', title: t.whyUs.items[2].title, desc: t.whyUs.items[2].desc, bg: 'rgba(46,173,74,0.06)', color: 'var(--green)' },
+          { iconId: 'tag', title: t.whyUs.items[3].title, desc: t.whyUs.items[3].desc, bg: 'rgba(240,180,41,0.06)', color: 'var(--yellow)' },
+          { iconId: 'users', title: t.whyUs.items[4].title, desc: t.whyUs.items[4].desc, bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
+          { iconId: 'award', title: t.whyUs.items[5].title, desc: t.whyUs.items[5].desc, bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
         ].map((f, i) => (
           <div class="feature-card reveal-scale" style={`transition-delay: ${i * 0.1}s`}>
             <div class="feature-icon" style={`background: ${f.bg}; color: ${f.color}`}>
@@ -196,10 +196,10 @@ const t = translations[lang];
       <div class="cta-shape s3" data-parallax="0.05"></div>
     </div>
     <div class="container cta-inner reveal-scale">
-      <h2>Pronto para vestir a sua equipa<br/>com excelência?</h2>
-      <p>Solicite um orçamento gratuito e sem compromisso. Respondemos em 24 horas.</p>
+      <h2>{t.cta.title}<br/>{t.cta.title2}</h2>
+      <p>{t.cta.subtitle}</p>
       <div class="cta-actions">
-        <a href="#contact" class="btn btn-cta">Solicitar Orçamento →</a>
+        <a href="#contact" class="btn btn-cta">{t.cta.btn} →</a>
         <a href="https://wa.me/" target="_blank" class="btn btn-cta-secondary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           WhatsApp
@@ -249,15 +249,15 @@ const t = translations[lang];
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <div class="tag">Testemunhos</div>
-        <h2>O Que Dizem os Nossos Clientes</h2>
-        <p>A confiança das empresas que vestem Blessing</p>
+        <div class="tag">{t.testimonials.tag}</div>
+        <h2>{t.testimonials.title}</h2>
+        <p>{t.testimonials.subtitle}</p>
       </div>
       <div class="testimonials-grid">
         {[
-          { name: 'Carlos M.', role: 'Director de Operações', text: 'A Blessing transformou a imagem da nossa equipa. Uniformes impecáveis, entrega no prazo e preço justo. Recomendo a qualquer empresa.', stars: 5 },
-          { name: 'Ana P.', role: 'Gestora de RH', text: 'Trabalhamos com a Blessing há 3 anos. A qualidade é consistente e o atendimento personalizado faz toda a diferença. Uma parceria de confiança.', stars: 5 },
-          { name: 'João S.', role: 'Empresário', text: 'Precisávamos de 200 uniformes em tempo recorde. A Blessing entregou com qualidade e dentro do prazo. Profissionalismo de excelência.', stars: 5 },
+          { name: t.testimonials.items[0].name, role: t.testimonials.items[0].role, text: t.testimonials.items[0].text, stars: 5 },
+          { name: t.testimonials.items[1].name, role: t.testimonials.items[1].role, text: t.testimonials.items[1].text, stars: 5 },
+          { name: t.testimonials.items[2].name, role: t.testimonials.items[2].role, text: t.testimonials.items[2].text, stars: 5 },
         ].map((test, i) => (
           <div class={`testimonial-card ${i === 1 ? 'reveal' : i === 0 ? 'reveal-left' : 'reveal-right'}`} style={`transition-delay: ${i * 0.12}s`}>
             <div class="test-stars">
