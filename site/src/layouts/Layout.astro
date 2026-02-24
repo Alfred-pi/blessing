@@ -3,10 +3,7 @@ import '../styles/global.css';
 import type { Lang } from '../i18n/translations';
 import { translations, getLocalizedPath } from '../i18n/translations';
 
-interface Props {
-  lang: Lang;
-}
-
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = translations[lang];
 const navLinks = ['home', 'services', 'about', 'gallery', 'contact'] as const;
@@ -35,12 +32,19 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
   <link rel="icon" type="image/svg+xml" href="/blessing/favicon.svg" />
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href={getLocalizedPath(lang)} class="logo">
-        <div class="logo-icon">B</div>
-        <span class="logo-text">BLESSING</span>
+        <div class="logo-mark">
+          <div class="logo-ring">
+            <span class="ring-r"></span><span class="ring-y"></span><span class="ring-g"></span><span class="ring-b"></span>
+          </div>
+          <span class="logo-blg">BLG</span>
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-name">BLESSING</span>
+          <span class="logo-sub">Uniformes Angola</span>
+        </div>
       </a>
       
       <div class="nav-links" id="navLinks">
@@ -53,8 +57,8 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
         <div class="lang-switcher" id="langSwitcher">
           <button class="lang-btn" id="langBtn">
             <span>{flags[lang]}</span>
-            <span class="lang-label">{labels[lang]}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <span>{labels[lang]}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="lang-dropdown" id="langDropdown">
             {langs.map(l => (
@@ -64,8 +68,9 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
             ))}
           </div>
         </div>
+        <a href="#contact" class="btn btn-primary nav-cta">{t.hero.cta}</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="menuIcon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
     </div>
@@ -73,16 +78,18 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
 
   <slot />
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="logo" style="margin-bottom: 1rem;">
-            <div class="logo-icon">B</div>
-            <span class="logo-text">BLESSING</span>
+            <div class="logo-mark small">
+              <div class="logo-ring small"><span class="ring-r"></span><span class="ring-y"></span><span class="ring-g"></span><span class="ring-b"></span></div>
+              <span class="logo-blg small">BLG</span>
+            </div>
+            <span class="logo-name">BLESSING</span>
           </div>
-          <p style="color: var(--gray-500); font-size: 0.9rem; line-height: 1.7;">{t.footer.tagline}</p>
+          <p class="footer-desc">{t.footer.tagline}</p>
         </div>
         <div>
           <h4 class="footer-title">{t.footer.links}</h4>
@@ -96,13 +103,13 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
           <h4 class="footer-title">{t.footer.social}</h4>
           <div class="social-links">
             <a href="https://facebook.com/blessinguniformes" target="_blank" rel="noreferrer" aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="https://instagram.com/blessinguniformes" target="_blank" rel="noreferrer" aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <a href="https://instagram.com/blessing_angola" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
             <a href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             </a>
           </div>
         </div>
@@ -114,111 +121,79 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
   </footer>
 
   <script>
-    // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar?.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Mobile menu
+    window.addEventListener('scroll', () => navbar?.classList.toggle('scrolled', window.scrollY > 50));
     const toggle = document.getElementById('mobileToggle');
     const links = document.getElementById('navLinks');
     toggle?.addEventListener('click', () => links?.classList.toggle('open'));
     links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links?.classList.remove('open')));
-
-    // Language dropdown
     const langBtn = document.getElementById('langBtn');
     const langDrop = document.getElementById('langDropdown');
     langBtn?.addEventListener('click', (e) => { e.stopPropagation(); langDrop?.classList.toggle('open'); });
     document.addEventListener('click', () => langDrop?.classList.remove('open'));
-
-    // Intersection Observer for reveal animations
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
   <style>
-    /* Navbar */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
-      backdrop-filter: blur(20px); background: rgba(10,10,10,0.8);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      transition: all 0.3s;
-    }
-    .navbar.scrolled { background: rgba(10,10,10,0.95); border-color: rgba(255,255,255,0.06); }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 40; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.3s; }
+    .navbar.scrolled { border-color: var(--border); box-shadow: 0 1px 12px rgba(0,0,0,0.04); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+    
     .logo { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-icon {
-      width: 2.25rem; height: 2.25rem; border-radius: 0.5rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      display: flex; align-items: center; justify-content: center;
-      color: var(--dark); font-weight: 700; font-size: 1.1rem; font-family: 'Syne', sans-serif;
-    }
-    .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .logo-mark { position: relative; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; }
+    .logo-mark.small { width: 2rem; height: 2rem; }
+    .logo-ring { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
+    .logo-ring span { position: absolute; width: 50%; height: 50%; }
+    .ring-r { top: 0; left: 0; background: var(--red); }
+    .ring-y { top: 0; right: 0; background: var(--yellow); }
+    .ring-g { bottom: 0; left: 0; background: var(--green); }
+    .ring-b { bottom: 0; right: 0; background: var(--blue); }
+    .logo-blg { position: relative; z-index: 1; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.6rem; color: white; letter-spacing: 0.05em; background: var(--text); width: 1.5rem; height: 1.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .logo-blg.small { width: 1.2rem; height: 1.2rem; font-size: 0.45rem; }
+    .logo-text-group { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
+    .logo-sub { font-size: 0.65rem; color: var(--text-3); font-weight: 500; letter-spacing: 0.02em; }
+    
     .nav-links { display: flex; gap: 2rem; }
-    .nav-link { font-size: 0.875rem; color: var(--gray-400); transition: color 0.3s; }
-    .nav-link:hover { color: var(--gold); }
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
-    .mobile-toggle { display: none; background: none; border: none; color: var(--gray-400); cursor: pointer; }
-
-    /* Language switcher */
+    .nav-link { font-size: 0.875rem; color: var(--text-2); font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-cta { padding: 0.75rem 1.5rem; font-size: 0.8rem; }
+    .mobile-toggle { display: none; background: none; border: none; color: var(--text-2); cursor: pointer; padding: 0.5rem; }
+    
     .lang-switcher { position: relative; }
-    .lang-btn {
-      display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.75rem;
-      border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);
-      background: transparent; color: var(--gray-400); cursor: pointer; font-size: 0.875rem;
-      transition: border-color 0.3s;
-    }
-    .lang-btn:hover { border-color: rgba(212,168,83,0.4); }
-    .lang-dropdown {
-      position: absolute; top: 100%; right: 0; margin-top: 0.5rem;
-      background: var(--dark-card); border: 1px solid var(--dark-border);
-      border-radius: 0.75rem; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.2s;
-    }
+    .lang-btn { display: flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.75rem; border-radius: 28px; border: 1px solid var(--border); background: var(--bg); color: var(--text-2); cursor: pointer; font-size: 0.8rem; font-weight: 500; transition: all 0.2s; }
+    .lang-btn:hover { border-color: var(--text-3); }
+    .lang-dropdown { position: absolute; top: calc(100% + 0.5rem); right: 0; background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: all 0.2s; z-index: 50; }
     .lang-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    .lang-option {
-      display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 1rem;
-      font-size: 0.875rem; color: var(--gray-400); transition: all 0.2s; white-space: nowrap;
-    }
-    .lang-option:hover { background: rgba(255,255,255,0.05); }
-    .lang-option.active { color: var(--gold); }
+    .lang-option { display: flex; align-items: center; gap: 0.625rem; padding: 0.625rem 1rem; font-size: 0.8rem; color: var(--text-2); transition: all 0.15s; white-space: nowrap; }
+    .lang-option:hover { background: var(--surface); }
+    .lang-option.active { color: var(--accent); font-weight: 600; }
 
-    /* Footer */
-    .footer { border-top: 1px solid var(--dark-border); padding: 3rem 0; }
+    .footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
-    .footer-title { font-family: 'Syne', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 1rem; }
-    .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer-links a { color: var(--gray-500); font-size: 0.9rem; transition: color 0.3s; }
-    .footer-links a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 0.75rem; }
-    .social-links a {
-      width: 2.75rem; height: 2.75rem; border-radius: 0.75rem;
-      border: 1px solid var(--dark-border); background: var(--dark-card);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gray-400); transition: all 0.3s;
-    }
-    .social-links a:hover { border-color: rgba(212,168,83,0.3); background: rgba(212,168,83,0.05); color: var(--gold); }
-    .footer-bottom { border-top: 1px solid var(--dark-border); padding-top: 2rem; text-align: center; }
-    .footer-bottom p { color: var(--gray-500); font-size: 0.875rem; }
+    .footer-desc { color: var(--text-3); font-size: 0.875rem; line-height: 1.7; max-width: 20rem; }
+    .footer-title { font-family: 'Syne', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
+    .footer-links a { color: var(--text-2); font-size: 0.875rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .social-links { display: flex; gap: 0.5rem; }
+    .social-links a { width: 2.5rem; height: 2.5rem; border-radius: 14px; background: var(--surface); display: flex; align-items: center; justify-content: center; color: var(--text-2); transition: all 0.2s; }
+    .social-links a:hover { background: var(--accent-bg); color: var(--accent); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; }
+    .footer-bottom p { color: var(--text-3); font-size: 0.8rem; }
 
     @media (max-width: 768px) {
-      .nav-links {
-        display: none; position: absolute; top: 4rem; left: 0; right: 0;
-        flex-direction: column; padding: 1rem 1.5rem; gap: 0;
-        background: rgba(10,10,10,0.98); border-top: 1px solid rgba(255,255,255,0.05);
-      }
+      .nav-links { display: none; position: absolute; top: 4.5rem; left: 0; right: 0; flex-direction: column; padding: 1rem 1.5rem; gap: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
       .nav-links.open { display: flex; }
-      .nav-link { padding: 0.75rem 0; }
+      .nav-link { padding: 0.875rem 0; border-bottom: 1px solid var(--surface); }
       .mobile-toggle { display: block; }
+      .nav-cta { display: none; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .logo-text-group .logo-sub { display: none; }
     }
   </style>
 </body>
