@@ -133,8 +133,43 @@ const langs: Lang[] = ['pt', 'fr', 'en'];
     document.addEventListener('click', () => langDrop?.classList.remove('open'));
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate').forEach(el => observer.observe(el));
+
+    // Parallax effect on scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          document.querySelectorAll('[data-parallax]').forEach(el => {
+            const speed = parseFloat((el as HTMLElement).dataset.parallax || '0.3');
+            (el as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Counter animation
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt((el as HTMLElement).dataset.count || '0');
+      const suffix = (el as HTMLElement).dataset.suffix || '';
+      const obs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          let current = 0;
+          const step = Math.ceil(target / 40);
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current + suffix;
+          }, 30);
+          obs.unobserve(el);
+        }
+      }, { threshold: 0.5 });
+      obs.observe(el);
+    });
   </script>
 
   <style>

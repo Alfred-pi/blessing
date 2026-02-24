@@ -8,6 +8,7 @@ const t = translations[lang];
 <Layout lang={lang}>
   <!-- Hero -->
   <section id="home" class="hero">
+    <div class="hero-bg-pattern" data-parallax="-0.08"></div>
     <div class="container hero-inner">
       <div class="hero-content">
         <div class="tag animate-fade-up">
@@ -38,6 +39,29 @@ const t = translations[lang];
         </div>
       </div>
     </div>
+    <div class="hero-scroll-indicator animate-fade-up delay-5">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        {['Uniformes Corporativos', 'Fardas', 'EPI', 'Design Têxtil', 'Bordados', 'Estampas', 'Polos', 'Camisas', 'Coletes', 'Batas'].map(item => (
+          <span class="marquee-item">
+            <span class="marquee-dot"></span>
+            {item}
+          </span>
+        ))}
+        {['Uniformes Corporativos', 'Fardas', 'EPI', 'Design Têxtil', 'Bordados', 'Estampas', 'Polos', 'Camisas', 'Coletes', 'Batas'].map(item => (
+          <span class="marquee-item">
+            <span class="marquee-dot"></span>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
   </section>
 
   <!-- Services -->
@@ -50,7 +74,8 @@ const t = translations[lang];
       </div>
       <div class="services-grid">
         {t.services.items.map((item: any, i: number) => (
-          <div class="service-card reveal" style={`transition-delay: ${i * 0.1}s`}>
+          <div class={`service-card ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`} style={`transition-delay: ${i * 0.12}s`}>
+            <div class="service-number">0{i + 1}</div>
             <div class={`service-icon icon-${item.icon}`}>
               {item.icon === 'shirt' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.38 3.46 16 2 12 5 8 2 3.62 3.46a2 2 0 0 0-1.34 1.44l-.76 3.2a1 1 0 0 0 .53 1.15l2.95 1.47V20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9.28l2.95-1.47a1 1 0 0 0 .53-1.15l-.76-3.2a2 2 0 0 0-1.34-1.44Z"/></svg>}
               {item.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
@@ -65,23 +90,108 @@ const t = translations[lang];
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container about-grid">
-      <div class="about-text">
-        <div class="tag reveal">{t.about.label}</div>
-        <h2 class="reveal" style="margin: 1.5rem 0;">{t.about.title}</h2>
-        <p class="reveal about-p">{t.about.p1}</p>
-        <p class="reveal about-p">{t.about.p2}</p>
+  <!-- Process / How it works -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="tag">Processo</div>
+        <h2>Como Trabalhamos</h2>
+        <p>Do primeiro contacto à entrega, um processo simples e transparente</p>
       </div>
-      <div class="stats-col">
-        {t.about.stats.map((stat: any, i: number) => (
-          <div class={`stat-card reveal`} style={`transition-delay: ${(i + 2) * 0.1}s`}>
-            <div class={`stat-accent accent-${i}`}></div>
-            <div class="stat-value">{stat.value}</div>
-            <div class="stat-label">{stat.label}</div>
+      <div class="process-timeline">
+        <div class="process-line"></div>
+        {[
+          { num: '01', title: 'Consulta', desc: 'Entendemos as necessidades da sua empresa e definimos o projeto juntos.', color: 'var(--red)' },
+          { num: '02', title: 'Design', desc: 'Criamos designs personalizados com a identidade visual da sua marca.', color: 'var(--yellow)' },
+          { num: '03', title: 'Produção', desc: 'Confeccionamos com materiais de qualidade e atenção a cada detalhe.', color: 'var(--green)' },
+          { num: '04', title: 'Entrega', desc: 'Entregamos no prazo, com garantia de qualidade em cada peça.', color: 'var(--blue)' },
+        ].map((step, i) => (
+          <div class="process-step reveal" style={`transition-delay: ${i * 0.15}s`}>
+            <div class="step-dot" style={`background: ${step.color}`}>
+              <span>{step.num}</span>
+            </div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About with counters -->
+  <section id="about" class="section bg-alt">
+    <div class="container about-grid">
+      <div class="about-text">
+        <div class="tag reveal-left">{t.about.label}</div>
+        <h2 class="reveal-left" style="margin: 1.5rem 0;">{t.about.title}</h2>
+        <p class="reveal-left about-p">{t.about.p1}</p>
+        <p class="reveal-left about-p">{t.about.p2}</p>
+      </div>
+      <div class="stats-col">
+        <div class="stat-card reveal-right" style="transition-delay: 0.1s">
+          <div class="stat-accent accent-0"></div>
+          <div class="stat-value" data-count="500" data-suffix="+">0</div>
+          <div class="stat-label">{t.about.stats[0].label}</div>
+        </div>
+        <div class="stat-card reveal-right" style="transition-delay: 0.2s">
+          <div class="stat-accent accent-1"></div>
+          <div class="stat-value" data-count="10000" data-suffix="+">0</div>
+          <div class="stat-label">{t.about.stats[1].label}</div>
+        </div>
+        <div class="stat-card reveal-right" style="transition-delay: 0.3s">
+          <div class="stat-accent accent-2"></div>
+          <div class="stat-value" data-count="5" data-suffix="+">0</div>
+          <div class="stat-label">{t.about.stats[2].label}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="tag">Vantagens</div>
+        <h2>Porquê a Blessing?</h2>
+        <p>O que nos diferencia no mercado angolano</p>
+      </div>
+      <div class="features-grid">
+        {[
+          { icon: '⚡', title: 'Rapidez', desc: 'Prazos de entrega competitivos para não parar a sua operação', bg: 'rgba(212,43,43,0.06)' },
+          { icon: '🎯', title: 'Personalização', desc: 'Cada uniforme é pensado para a identidade da sua empresa', bg: 'rgba(43,124,212,0.06)' },
+          { icon: '🛡️', title: 'Qualidade', desc: 'Materiais resistentes e acabamentos de excelência duradouros', bg: 'rgba(46,173,74,0.06)' },
+          { icon: '💰', title: 'Preço Justo', desc: 'Melhor relação qualidade-preço do mercado em Luanda', bg: 'rgba(240,180,41,0.06)' },
+          { icon: '🤝', title: 'Acompanhamento', desc: 'Suporte dedicado do início ao fim do seu projeto', bg: 'rgba(212,43,43,0.06)' },
+          { icon: '🏆', title: 'Experiência', desc: 'Anos de know-how no mercado angolano de uniformes', bg: 'rgba(43,124,212,0.06)' },
+        ].map((f, i) => (
+          <div class="feature-card reveal-scale" style={`transition-delay: ${i * 0.1}s`}>
+            <div class="feature-emoji" style={`background: ${f.bg}`}>{f.icon}</div>
+            <h4>{f.title}</h4>
+            <p>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-bg-shapes">
+      <div class="cta-shape s1" data-parallax="0.1"></div>
+      <div class="cta-shape s2" data-parallax="-0.08"></div>
+      <div class="cta-shape s3" data-parallax="0.05"></div>
+    </div>
+    <div class="container cta-inner reveal-scale">
+      <h2>Pronto para vestir a sua equipa<br/>com excelência?</h2>
+      <p>Solicite um orçamento gratuito e sem compromisso. Respondemos em 24 horas.</p>
+      <div class="cta-actions">
+        <a href="#contact" class="btn btn-cta">Solicitar Orçamento →</a>
+        <a href="https://wa.me/" target="_blank" class="btn btn-cta-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
       </div>
     </div>
   </section>
@@ -95,27 +205,27 @@ const t = translations[lang];
         <p>{t.gallery.subtitle}</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item gallery-featured reveal">
+        <div class="gallery-item gallery-featured reveal-scale">
           <img src="/blessing/photos/photo3.jpg" alt="Blessing Uniformes - Catálogo" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[0]}</div>
         </div>
-        <div class="gallery-item reveal" style="transition-delay: 0.08s">
+        <div class="gallery-item reveal-rotate" style="transition-delay: 0.1s">
           <img src="/blessing/photos/photo4.jpg" alt="Coletes utilitários" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[1]}</div>
         </div>
-        <div class="gallery-item reveal" style="transition-delay: 0.16s">
+        <div class="gallery-item reveal-rotate" style="transition-delay: 0.2s">
           <img src="/blessing/photos/photo2.jpg" alt="Tecidos de qualidade" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[2]}</div>
         </div>
-        <div class="gallery-item reveal" style="transition-delay: 0.24s">
+        <div class="gallery-item reveal-scale" style="transition-delay: 0.15s">
           <img src="/blessing/photos/hero.jpg" alt="BLG Logo" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[3]}</div>
         </div>
-        <div class="gallery-item reveal" style="transition-delay: 0.32s">
+        <div class="gallery-item reveal-scale" style="transition-delay: 0.25s">
           <img src="/blessing/photos/logo-fb-large.jpg" alt="Blessing Uniformes" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[4]}</div>
         </div>
-        <div class="gallery-item reveal" style="transition-delay: 0.4s">
+        <div class="gallery-item reveal-rotate" style="transition-delay: 0.3s">
           <img src="/blessing/photos/photo3.jpg" alt="Uniformes profissionais" loading="lazy" />
           <div class="gallery-label">{t.gallery.items[5]}</div>
         </div>
@@ -123,8 +233,42 @@ const t = translations[lang];
     </div>
   </section>
 
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="tag">Testemunhos</div>
+        <h2>O Que Dizem os Nossos Clientes</h2>
+        <p>A confiança das empresas que vestem Blessing</p>
+      </div>
+      <div class="testimonials-grid">
+        {[
+          { name: 'Carlos M.', role: 'Director de Operações', text: 'A Blessing transformou a imagem da nossa equipa. Uniformes impecáveis, entrega no prazo e preço justo. Recomendo a qualquer empresa.', stars: 5 },
+          { name: 'Ana P.', role: 'Gestora de RH', text: 'Trabalhamos com a Blessing há 3 anos. A qualidade é consistente e o atendimento personalizado faz toda a diferença. Uma parceria de confiança.', stars: 5 },
+          { name: 'João S.', role: 'Empresário', text: 'Precisávamos de 200 uniformes em tempo recorde. A Blessing entregou com qualidade e dentro do prazo. Profissionalismo de excelência.', stars: 5 },
+        ].map((test, i) => (
+          <div class={`testimonial-card ${i === 1 ? 'reveal' : i === 0 ? 'reveal-left' : 'reveal-right'}`} style={`transition-delay: ${i * 0.12}s`}>
+            <div class="test-stars">
+              {Array.from({length: test.stars}).map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--yellow)" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              ))}
+            </div>
+            <p class="test-text">"{test.text}"</p>
+            <div class="test-author">
+              <div class="test-avatar">{test.name.charAt(0)}</div>
+              <div>
+                <div class="test-name">{test.name}</div>
+                <div class="test-role">{test.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
-  <section id="contact" class="section">
+  <section id="contact" class="section bg-alt">
     <div class="container">
       <div class="section-header reveal">
         <div class="tag">{t.contact.title}</div>
@@ -132,7 +276,7 @@ const t = translations[lang];
         <p>{t.contact.subtitle}</p>
       </div>
       <div class="contact-grid">
-        <form class="contact-form reveal" onsubmit="event.preventDefault()">
+        <form class="contact-form reveal-left" onsubmit="event.preventDefault()">
           <div class="form-row">
             <input type="text" placeholder={t.contact.name} />
             <input type="email" placeholder={t.contact.email} />
@@ -141,7 +285,7 @@ const t = translations[lang];
           <textarea rows="5" placeholder={t.contact.message}></textarea>
           <button type="submit" class="btn btn-primary" style="width: 100%;">{t.contact.send} →</button>
         </form>
-        <div class="contact-info reveal" style="transition-delay: 0.1s;">
+        <div class="contact-info reveal-right" style="transition-delay: 0.15s;">
           <div class="info-card">
             <div class="info-icon" style="background: rgba(46,173,74,0.08); color: var(--green);">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -167,40 +311,51 @@ const t = translations[lang];
 </Layout>
 
 <style>
-  .hero { padding: 8rem 0 5rem; overflow: hidden; }
+  /* Hero */
+  .hero { padding: 8rem 0 4rem; overflow: hidden; position: relative; }
+  .hero-bg-pattern { position: absolute; top: 0; right: -10%; width: 60%; height: 100%; background: radial-gradient(circle at 70% 30%, var(--accent-bg) 0%, transparent 60%); pointer-events: none; }
   .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .hero-title { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin: 1.5rem 0; }
   .hero-accent { color: var(--accent); }
   .hero-subtitle { font-size: 1.1rem; color: var(--text-2); max-width: 32rem; line-height: 1.7; margin-bottom: 2rem; }
   .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
   .hero-trust { display: flex; align-items: center; gap: 0.75rem; }
-  .trust-colors { display: flex; gap: 0; }
+  .trust-colors { display: flex; }
   .tc { width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 2px solid white; margin-left: -0.5rem; }
   .tc:first-child { margin-left: 0; }
-  .tc-r { background: var(--red); }
-  .tc-y { background: var(--yellow); }
-  .tc-g { background: var(--green); }
-  .tc-b { background: var(--blue); }
+  .tc-r { background: var(--red); } .tc-y { background: var(--yellow); } .tc-g { background: var(--green); } .tc-b { background: var(--blue); }
   .trust-text { font-size: 0.85rem; color: var(--text-3); font-weight: 500; }
-
   .hero-visual { display: flex; align-items: center; justify-content: center; }
   .hero-images { position: relative; width: 100%; max-width: 24rem; aspect-ratio: 1; }
-  .hero-img { position: absolute; border-radius: 20px; object-fit: cover; box-shadow: 0 12px 40px rgba(0,0,0,0.08); border: 3px solid white; }
+  .hero-img { position: absolute; border-radius: 20px; object-fit: cover; box-shadow: 0 16px 48px rgba(0,0,0,0.1); border: 3px solid white; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .hero-img:hover { transform: scale(1.03) rotate(1deg); }
   .hero-img.main { width: 75%; height: 70%; top: 0; right: 0; z-index: 2; }
   .hero-img.secondary { width: 55%; height: 50%; bottom: 0; left: 0; z-index: 1; }
-  .hero-img.badge-img { width: 5.5rem; height: 5.5rem; border-radius: 50%; bottom: 15%; right: 5%; z-index: 3; border: 4px solid white; object-fit: cover; }
+  .hero-img.badge-img { width: 5.5rem; height: 5.5rem; border-radius: 50%; bottom: 15%; right: 5%; z-index: 3; border: 4px solid white; animation: float 4s ease-in-out infinite; }
+  .hero-scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); }
+  .scroll-line { width: 2px; height: 2.5rem; background: linear-gradient(to bottom, var(--accent), transparent); animation: pulse 2s ease-in-out infinite; border-radius: 2px; }
 
+  /* Marquee */
+  .marquee-section { padding: 1.25rem 0; background: var(--text); overflow: hidden; }
+  .marquee-track { display: flex; }
+  .marquee-content { display: flex; animation: marquee 25s linear infinite; white-space: nowrap; }
+  .marquee-item { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0 1.5rem; color: white; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .marquee-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+
+  /* Sections */
   .section { padding: 5rem 0; }
   .bg-alt { background: var(--bg-2); }
   .section-header { text-align: center; margin-bottom: 3.5rem; }
   .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); margin: 1rem 0 0.75rem; font-weight: 800; letter-spacing: -0.02em; }
   .section-header p { color: var(--text-2); font-size: 1.05rem; max-width: 32rem; margin: 0 auto; }
-  .section-header .tag { margin-bottom: 0; }
 
+  /* Services */
   .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-  .service-card { background: white; border-radius: 28px; padding: 2rem; transition: all 0.3s; border: 1px solid var(--border); }
-  .service-card:hover { border-color: var(--accent); box-shadow: 0 8px 32px rgba(212, 43, 43, 0.06); transform: translateY(-2px); }
-  .service-icon { width: 3.25rem; height: 3.25rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+  .service-card { background: white; border-radius: 28px; padding: 2rem; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 1px solid var(--border); position: relative; overflow: hidden; }
+  .service-card:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(212, 43, 43, 0.08); transform: translateY(-4px); }
+  .service-number { position: absolute; top: 1.25rem; right: 1.5rem; font-size: 3rem; font-weight: 800; color: var(--surface-2); line-height: 1; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .service-icon { width: 3.25rem; height: 3.25rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; transition: transform 0.3s; }
+  .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
   .icon-shirt { background: rgba(212, 43, 43, 0.08); color: var(--red); }
   .icon-shield { background: rgba(43, 124, 212, 0.08); color: var(--blue); }
   .icon-hard-hat { background: rgba(240, 180, 41, 0.08); color: var(--yellow); }
@@ -208,33 +363,82 @@ const t = translations[lang];
   .service-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; margin-bottom: 0.625rem; font-weight: 700; }
   .service-card p { color: var(--text-2); line-height: 1.65; font-size: 0.9rem; }
 
+  /* Process */
+  .process-timeline { position: relative; max-width: 40rem; margin: 0 auto; }
+  .process-line { position: absolute; left: 1.75rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--red), var(--yellow), var(--green), var(--blue)); border-radius: 2px; }
+  .process-step { display: flex; gap: 2rem; align-items: flex-start; padding: 1.5rem 0; position: relative; }
+  .step-dot { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-weight: 800; font-size: 0.8rem; z-index: 1; box-shadow: 0 4px 16px rgba(0,0,0,0.12); transition: transform 0.3s, box-shadow 0.3s; }
+  .process-step:hover .step-dot { transform: scale(1.12); box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
+  .step-content h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.375rem; }
+  .step-content p { color: var(--text-2); font-size: 0.9rem; line-height: 1.6; }
+
+  /* About */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .about-p { color: var(--text-2); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
   .stats-col { display: flex; flex-direction: column; gap: 1rem; }
-  .stat-card { background: var(--surface); border-radius: 28px; padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1.25rem; position: relative; overflow: hidden; }
+  .stat-card { background: white; border-radius: 28px; padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1.25rem; border: 1px solid var(--border); transition: all 0.3s; }
+  .stat-card:hover { transform: translateX(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
   .stat-accent { width: 4px; height: 2.5rem; border-radius: 4px; flex-shrink: 0; }
-  .accent-0 { background: var(--red); }
-  .accent-1 { background: var(--yellow); }
-  .accent-2 { background: var(--green); }
+  .accent-0 { background: var(--red); } .accent-1 { background: var(--yellow); } .accent-2 { background: var(--green); }
   .stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.75rem; font-weight: 800; }
   .stat-label { color: var(--text-2); font-size: 0.85rem; }
 
-  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .gallery-item { position: relative; aspect-ratio: 4/3; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: all 0.3s; }
-  .gallery-item:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-  .gallery-item:hover img { transform: scale(1.04); }
-  .gallery-featured { grid-column: span 2; aspect-ratio: 2/1; }
-  .gallery-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.85rem; color: white; }
+  /* Features */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .feature-card { background: var(--surface); border-radius: 24px; padding: 2rem; text-align: center; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 1px solid transparent; }
+  .feature-card:hover { background: white; border-color: var(--border); transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.06); }
+  .feature-emoji { width: 3.5rem; height: 3.5rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem; transition: transform 0.3s; }
+  .feature-card:hover .feature-emoji { transform: scale(1.15) rotate(5deg); }
+  .feature-card h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+  .feature-card p { color: var(--text-2); font-size: 0.85rem; line-height: 1.6; }
 
+  /* CTA Banner */
+  .cta-banner { padding: 5rem 0; background: var(--accent); position: relative; overflow: hidden; }
+  .cta-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+  .cta-shape { position: absolute; border-radius: 50%; opacity: 0.1; background: white; }
+  .s1 { width: 20rem; height: 20rem; top: -8rem; right: -4rem; }
+  .s2 { width: 12rem; height: 12rem; bottom: -4rem; left: 10%; }
+  .s3 { width: 8rem; height: 8rem; top: 20%; left: 60%; }
+  .cta-inner { position: relative; text-align: center; color: white; }
+  .cta-inner h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; color: white; }
+  .cta-inner p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 2rem; max-width: 28rem; margin-left: auto; margin-right: auto; }
+  .cta-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-cta { background: white; color: var(--accent); padding: 1rem 2rem; border-radius: 28px; font-weight: 700; font-size: 0.95rem; transition: all 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .btn-cta-secondary { background: rgba(255,255,255,0.15); color: white; padding: 1rem 2rem; border-radius: 28px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.25); display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-cta-secondary:hover { background: rgba(255,255,255,0.25); }
+
+  /* Gallery */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .gallery-item { position: relative; aspect-ratio: 4/3; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .gallery-item:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-featured { grid-column: span 2; aspect-ratio: 2/1; }
+  .gallery-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.85rem; color: white; transform: translateY(100%); transition: transform 0.3s; }
+  .gallery-item:hover .gallery-label { transform: translateY(0); }
+
+  /* Testimonials */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .testimonial-card { background: var(--surface); border-radius: 24px; padding: 2rem; transition: all 0.4s; border: 1px solid transparent; }
+  .testimonial-card:hover { background: white; border-color: var(--border); transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.04); }
+  .test-stars { display: flex; gap: 2px; margin-bottom: 1rem; }
+  .test-text { color: var(--text-2); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 0.75rem; }
+  .test-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+  .test-name { font-weight: 600; font-size: 0.9rem; }
+  .test-role { color: var(--text-3); font-size: 0.8rem; }
+
+  /* Contact */
   .contact-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; max-width: 56rem; margin: 0 auto; }
   .contact-form { display: flex; flex-direction: column; gap: 1rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  input, textarea { width: 100%; padding: 1rem 1.25rem; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; resize: none; }
+  input, textarea { width: 100%; padding: 1rem 1.25rem; border-radius: 20px; background: white; border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: all 0.3s; outline: none; resize: none; }
   input::placeholder, textarea::placeholder { color: var(--text-3); }
-  input:focus, textarea:focus { border-color: var(--accent); }
+  input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
   .contact-info { display: flex; flex-direction: column; gap: 0.875rem; }
-  .info-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 20px; background: var(--surface); }
+  .info-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border-radius: 20px; background: white; border: 1px solid var(--border); transition: all 0.3s; }
+  .info-card:hover { transform: translateX(6px); border-color: var(--accent); }
   .info-icon { width: 2.75rem; height: 2.75rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .info-label { color: var(--text-3); font-size: 0.75rem; margin-bottom: 0.125rem; font-weight: 500; }
   .info-value { font-size: 0.9rem; font-weight: 500; }
@@ -243,10 +447,15 @@ const t = translations[lang];
     .hero { padding: 6rem 0 3rem; }
     .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
     .hero-visual { display: none; }
+    .hero-scroll-indicator { display: none; }
     .services-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-featured { grid-column: span 2; }
+    .testimonials-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
+    .process-timeline { padding-left: 0.5rem; }
   }
 </style>
