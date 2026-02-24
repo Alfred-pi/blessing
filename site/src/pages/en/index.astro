@@ -100,18 +100,21 @@ const t = translations[lang];
       </div>
       <div class="process-grid">
         {[
-          { num: '01', title: 'Consulta', desc: 'Entendemos as necessidades da sua empresa e definimos o projeto juntos.', icon: '💬', color: 'var(--red)', bg: 'rgba(212,43,43,0.06)' },
-          { num: '02', title: 'Design', desc: 'Criamos designs personalizados com a identidade visual da sua marca.', icon: '✏️', color: 'var(--yellow)', bg: 'rgba(240,180,41,0.06)' },
-          { num: '03', title: 'Produção', desc: 'Confeccionamos com materiais de qualidade e atenção a cada detalhe.', icon: '🧵', color: 'var(--green)', bg: 'rgba(46,173,74,0.06)' },
-          { num: '04', title: 'Entrega', desc: 'Entregamos no prazo, com garantia de qualidade em cada peça.', icon: '📦', color: 'var(--blue)', bg: 'rgba(43,124,212,0.06)' },
+          { num: '01', title: 'Consulta', desc: 'Entendemos as necessidades da sua empresa e definimos o projeto juntos.', iconId: 'chat', color: 'var(--red)', bg: 'rgba(212,43,43,0.06)' },
+          { num: '02', title: 'Design', desc: 'Criamos designs personalizados com a identidade visual da sua marca.', iconId: 'pen', color: 'var(--yellow)', bg: 'rgba(240,180,41,0.06)' },
+          { num: '03', title: 'Produção', desc: 'Confeccionamos com materiais de qualidade e atenção a cada detalhe.', iconId: 'scissors', color: 'var(--green)', bg: 'rgba(46,173,74,0.06)' },
+          { num: '04', title: 'Entrega', desc: 'Entregamos no prazo, com garantia de qualidade em cada peça.', iconId: 'truck', color: 'var(--blue)', bg: 'rgba(43,124,212,0.06)' },
         ].map((step, i) => (
           <div class="process-card reveal-scale" style={`transition-delay: ${i * 0.12}s`}>
             <div class="pc-top">
               <div class="pc-num" style={`color: ${step.color}`}>{step.num}</div>
               <div class="pc-line" style={`background: ${step.color}`}></div>
             </div>
-            <div class="pc-icon" style={`background: ${step.bg}`}>
-              <span>{step.icon}</span>
+            <div class="pc-icon" style={`background: ${step.bg}; color: ${step.color}`}>
+              {step.iconId === 'chat' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>}
+              {step.iconId === 'pen' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>}
+              {step.iconId === 'scissors' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>}
+              {step.iconId === 'truck' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
             </div>
             <h3>{step.title}</h3>
             <p>{step.desc}</p>
@@ -161,15 +164,22 @@ const t = translations[lang];
       </div>
       <div class="features-grid">
         {[
-          { icon: '⚡', title: 'Rapidez', desc: 'Prazos de entrega competitivos para não parar a sua operação', bg: 'rgba(212,43,43,0.06)' },
-          { icon: '🎯', title: 'Personalização', desc: 'Cada uniforme é pensado para a identidade da sua empresa', bg: 'rgba(43,124,212,0.06)' },
-          { icon: '🛡️', title: 'Qualidade', desc: 'Materiais resistentes e acabamentos de excelência duradouros', bg: 'rgba(46,173,74,0.06)' },
-          { icon: '💰', title: 'Preço Justo', desc: 'Melhor relação qualidade-preço do mercado em Luanda', bg: 'rgba(240,180,41,0.06)' },
-          { icon: '🤝', title: 'Acompanhamento', desc: 'Suporte dedicado do início ao fim do seu projeto', bg: 'rgba(212,43,43,0.06)' },
-          { icon: '🏆', title: 'Experiência', desc: 'Anos de know-how no mercado angolano de uniformes', bg: 'rgba(43,124,212,0.06)' },
+          { iconId: 'zap', title: 'Rapidez', desc: 'Prazos de entrega competitivos para não parar a sua operação', bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
+          { iconId: 'target', title: 'Personalização', desc: 'Cada uniforme é pensado para a identidade da sua empresa', bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
+          { iconId: 'shield', title: 'Qualidade', desc: 'Materiais resistentes e acabamentos de excelência duradouros', bg: 'rgba(46,173,74,0.06)', color: 'var(--green)' },
+          { iconId: 'tag', title: 'Preço Justo', desc: 'Melhor relação qualidade-preço do mercado em Luanda', bg: 'rgba(240,180,41,0.06)', color: 'var(--yellow)' },
+          { iconId: 'users', title: 'Acompanhamento', desc: 'Suporte dedicado do início ao fim do seu projeto', bg: 'rgba(212,43,43,0.06)', color: 'var(--red)' },
+          { iconId: 'award', title: 'Experiência', desc: 'Anos de know-how no mercado angolano de uniformes', bg: 'rgba(43,124,212,0.06)', color: 'var(--blue)' },
         ].map((f, i) => (
           <div class="feature-card reveal-scale" style={`transition-delay: ${i * 0.1}s`}>
-            <div class="feature-emoji" style={`background: ${f.bg}`}>{f.icon}</div>
+            <div class="feature-icon" style={`background: ${f.bg}; color: ${f.color}`}>
+              {f.iconId === 'zap' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>}
+              {f.iconId === 'target' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>}
+              {f.iconId === 'shield' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+              {f.iconId === 'tag' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>}
+              {f.iconId === 'users' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
+              {f.iconId === 'award' && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>}
+            </div>
             <h4>{f.title}</h4>
             <p>{f.desc}</p>
           </div>
@@ -372,7 +382,7 @@ const t = translations[lang];
   .pc-top { display: flex; align-items: center; gap: 0.75rem; justify-content: center; margin-bottom: 1.5rem; }
   .pc-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; }
   .pc-line { width: 2rem; height: 3px; border-radius: 3px; }
-  .pc-icon { width: 3.5rem; height: 3.5rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem; transition: transform 0.3s; }
+  .pc-icon { width: 3.5rem; height: 3.5rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
   .process-card:hover .pc-icon { transform: scale(1.15) rotate(5deg); }
   .process-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
   .process-card p { color: var(--text-2); font-size: 0.85rem; line-height: 1.6; }
@@ -394,8 +404,8 @@ const t = translations[lang];
   .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .feature-card { background: var(--surface); border-radius: 24px; padding: 2rem; text-align: center; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 1px solid transparent; }
   .feature-card:hover { background: white; border-color: var(--border); transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.06); }
-  .feature-emoji { width: 3.5rem; height: 3.5rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem; transition: transform 0.3s; }
-  .feature-card:hover .feature-emoji { transform: scale(1.15) rotate(5deg); }
+  .feature-icon { width: 3.5rem; height: 3.5rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .feature-card:hover .feature-icon { transform: scale(1.12) rotate(-5deg); }
   .feature-card h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
   .feature-card p { color: var(--text-2); font-size: 0.85rem; line-height: 1.6; }
 
